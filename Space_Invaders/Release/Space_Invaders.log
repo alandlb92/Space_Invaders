@@ -1,0 +1,29 @@
+﻿  Body.cpp
+c:\users\aland\documents\faia\space_invaders\space_invaders\body.cpp(26): warning C4244: 'argument': conversion from 'const int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\aland\documents\faia\space_invaders\space_invaders\body.cpp(27): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\aland\documents\faia\space_invaders\space_invaders\body.cpp(33): warning C4244: 'argument': conversion from 'const int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\aland\documents\faia\space_invaders\space_invaders\body.cpp(34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Main.cpp
+c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating code
+  5 of 8 functions (62.5%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Space_Invaders.vcxproj -> C:\Users\aland\Documents\Faia\Space_Invaders\Release\Space_Invaders.exe

@@ -1,0 +1,20 @@
+﻿  Body.cpp
+c:\users\aland\documents\faia\space_invaders\space_invaders\body.cpp(32): warning C4244: 'argument': conversion from 'const int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Main.cpp
+c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(11): warning C4244: 'argument': conversion from 'const T' to 'unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(25): warning C4244: 'argument': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+  Player.cpp
+  Generating Code...
+  Space_Invaders.vcxproj -> C:\Users\aland\Documents\Faia\Space_Invaders\Debug\Space_Invaders.exe
