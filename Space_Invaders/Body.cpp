@@ -1,6 +1,5 @@
 #include "Body.h"
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 Body::Body(BodyType _bodyType, sf::Vector2f windowSize)
 {
@@ -58,8 +57,6 @@ void Body::Update(float time)
 	timeCount += (time);
 	if (timeCount > animationFps)
 		NextFrame();
-
-	cout << "  Delta Time:" << timeCount << "time: " << time;
 }
 
 void Body::NextFrame()

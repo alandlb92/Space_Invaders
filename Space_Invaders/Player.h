@@ -4,8 +4,9 @@ class Player : public Body
 {
 public:
 	Player(BodyType bodyType, sf::Vector2f windowSize);
-	void Update(float time);
+	void Update(float time, sf::Event* event);
 private:
+	bool canShoot;
 	const float VELOCITY = 200;
 };
 

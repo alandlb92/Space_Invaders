@@ -1,16 +1,17 @@
-﻿  Body.cpp
-c:\users\aland\documents\faia\space_invaders\space_invaders\body.cpp(32): warning C4244: 'argument': conversion from 'const int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
+﻿  Bullet.cpp
   Main.cpp
-c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(11): warning C4244: 'argument': conversion from 'const T' to 'unsigned int', possible loss of data
+c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(14): warning C4244: 'argument': conversion from 'const T' to 'unsigned int', possible loss of data
           with
           [
               T=float
           ]
-c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(25): warning C4244: 'argument': conversion from '_Rep' to 'float', possible loss of data
+c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(28): warning C4244: 'argument': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(33): warning C4018: '<': signed/unsigned mismatch
+c:\users\aland\documents\faia\space_invaders\space_invaders\main.cpp(35): warning C4244: 'argument': conversion from '_Rep' to 'float', possible loss of data
           with
           [
               _Rep=double

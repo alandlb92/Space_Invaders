@@ -2,9 +2,12 @@
 #include <iostream>
 #include "Body.h"
 #include "Player.h"
+#include "Bullet.h"
 #include <chrono>
+#include <vector>
 
 const sf::Vector2f windowSize(1000, 800);
+std::vector<Bullet*> Bullet::bulletList;
 
 int main()
 {
@@ -22,10 +25,19 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		player.Update(elapsed.count());
-		//cout << "  Delta Time:" << elapsed.count();
+		player.Update(elapsed.count(), &event);
+
 		window.clear();
-		player.Draw(& window);
+
+		if (!Bullet::GetAllBullets().empty())
+			for (int i = 0; i < Bullet::GetAllBullets().size(); i++)
+			{
+				Bullet::GetAllBullets()[i]->Update(elapsed.count());
+				Bullet::GetAllBullets()[i]->Draw(&window);
+			}
+
+
+		player.Draw(&window);
 		window.display();
 		finish = std::chrono::high_resolution_clock::now();
 		elapsed = finish - start;
