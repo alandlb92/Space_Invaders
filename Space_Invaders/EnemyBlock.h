@@ -5,9 +5,8 @@
 class EnemyBlock
 {
 public:
+	static std::vector<Body*> Bodies;
 	EnemyBlock(sf::Vector2f windowSize);
-	std::vector<Body*> Bodies;
-
 	void Update(float time);
 	void Draw(sf::RenderWindow* window);
 	Bounds GetBounds();

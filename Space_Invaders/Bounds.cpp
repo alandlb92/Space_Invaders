@@ -1,5 +1,5 @@
 #include "Bounds.h"
-
+#include <iostream>
 Bounds::Bounds(float positionX, float positionY, float sizeX, float sizeY)
 {
 	CalculateBounds(positionX, positionY, sizeX, sizeY);
@@ -19,4 +19,9 @@ void Bounds::CalculateBounds(float positionX, float positionY, float sizeX, floa
 	Left = positionX;
 	Top = positionY;
 	Botton = positionY + sizeY;
+}
+
+bool Bounds::VerifyCollision(Bounds * bounds)
+{
+	return bounds->Left < Left && bounds->Right > Right && bounds->Top < Top && bounds->Botton > Botton;
 }

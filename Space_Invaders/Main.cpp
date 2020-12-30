@@ -9,6 +9,8 @@
 
 const sf::Vector2f windowSize(1000, 800);
 std::vector<Bullet*> Bullet::bulletList;
+std::vector<Body*> EnemyBlock::Bodies;
+Player* Player::player;
 
 int main()
 {

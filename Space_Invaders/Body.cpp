@@ -113,7 +113,6 @@ void Body::Update(float time)
 void Body::NextFrame()
 {
 	currentFrame++;
-	cout << currentFrame;
 	if (currentFrame >= animationFrames)
 		currentFrame = 0;
 }
@@ -129,6 +128,7 @@ sf::Vector2f Body::GetPosition()
 {
 	return sf::Vector2f(this->positionX, this->positionY);
 }
+
 
 void Body::CopyToBodyD(const int copy[2][196])
 {

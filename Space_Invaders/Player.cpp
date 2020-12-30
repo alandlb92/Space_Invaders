@@ -3,7 +3,7 @@
 #include <iostream>
 Player::Player(BodyType bodyType, sf::Vector2f windowSize) :Body(bodyType, windowSize)
 {
-
+	player = this;
 }
 
 void Player::Update(float time, sf::Event* event)
