@@ -3,6 +3,7 @@
 #include "Body.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "EnemyBlock.h"
 #include <chrono>
 #include <vector>
 
@@ -12,7 +13,8 @@ std::vector<Bullet*> Bullet::bulletList;
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Space Invaders");
-	Player player(Body::BodyType::PLAYER, windowSize);
+	EnemyBlock* enemies = new EnemyBlock(windowSize);
+	Player* player = new Player(BodyType::PLAYER, windowSize);
 	auto start = std::chrono::high_resolution_clock::now();
 	auto finish = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = finish - start;;
@@ -25,8 +27,8 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		player.Update(elapsed.count(), &event);
-
+		player->Update(elapsed.count(), &event);
+		enemies->Update(elapsed.count());
 		window.clear();
 
 		if (!Bullet::GetAllBullets().empty())
@@ -36,8 +38,8 @@ int main()
 				Bullet::GetAllBullets()[i]->Draw(&window);
 			}
 
-
-		player.Draw(&window);
+		enemies->Draw(&window);
+		player->Draw(&window);
 		window.display();
 		finish = std::chrono::high_resolution_clock::now();
 		elapsed = finish - start;

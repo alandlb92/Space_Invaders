@@ -1,12 +1,10 @@
 #include "Bullet.h"
-#include <iostream>
 
 Bullet::Bullet(sf::Vector2f startPosition,bool isEnemy)
 {
 	enemy = isEnemy;
 	positionX = startPosition.x;
 	positionY = startPosition.y;
-	std::cout << "Bullet created";
 	bulletList.push_back(this); 
 }
 
@@ -17,7 +15,6 @@ void Bullet::Update(float time)
 	else
 	positionY -= (time * velocity);
 
-	std::cout << " Bullet update " << positionX << "   " << positionY << "   " << bulletSize;
 }
 
 void Bullet::Draw(sf::RenderWindow* window)
