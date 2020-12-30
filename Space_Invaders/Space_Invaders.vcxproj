@@ -130,6 +130,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Bounds.cpp" />
+    <ClCompile Include="Bounds.h" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EnemyBlock.cpp" />
     <ClCompile Include="Main.cpp" />

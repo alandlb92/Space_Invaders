@@ -1,23 +1,28 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "BodyType.h"
+#include "Bounds.h"
 using namespace std;
 class Body
 {
 
 public:
-	float positionX;
-	float positionY;
 	//enum BodyType { PLAYER, ENEMY_1, ENEMY_2, ENEMY_3, ENEMY_4, ENEMY_5, ENEMY_6 };
 	Body(BodyType bodyType, sf::Vector2f windowSize);
 	void Draw(sf::RenderWindow* window);
 	void Move(sf::Vector2f direction);
 	void Update(float time);
 	void NextFrame();
+	void SetPosition(sf::Vector2f position);
+	sf::Vector2f GetPosition();
 
+	Bounds* bounds;
 	int bodyD[2][196];
 	int getSize() { return pixelSize; }
 	int getRows() { return rows; }
+protected:
+	float positionX;
+	float positionY;	
 private:
 	BodyType bodyType;
 	sf::Vector2f windowSize;

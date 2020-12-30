@@ -1,5 +1,8 @@
 .vs/*
-
+Debug/*
+Release/*
+Space_Invaders/Debug/*
+Space_Invaders/Release/*
 # Prerequisites
 *.d
 
