@@ -1,14 +1,17 @@
 #include "Bullet.h"
 #include "EnemyBlock.h"
 #include <iostream>
+#include <map>
 
 Bullet::Bullet(sf::Vector2f startPosition, bool isEnemy)
 {
+	id = currentId++;
 	enemy = isEnemy;
 	positionX = startPosition.x;
 	positionY = startPosition.y;
-	bulletList.push_back(this);
+	verifyCollision = true;
 	bounds = new Bounds(positionX, positionY, bulletSizeX, bulletSizeY);
+	bulletList.insert(std::pair<int, Bullet*>(id, this));
 }
 
 void Bullet::Update(float time)
@@ -30,13 +33,15 @@ void Bullet::Draw(sf::RenderWindow* window)
 	window->draw(shape);
 }
 
-std::vector<Bullet*> Bullet::GetAllBullets()
+std::map<int, Bullet*> Bullet::GetAllBullets()
 {
 	return bulletList;
 }
 
 void Bullet::VerifyCollision()
 {
+	if (!verifyCollision)
+		return;
 	if (!enemy)
 	{
 		for (int i = 0; i < EnemyBlock::Bodies.size(); i++)
@@ -56,7 +61,6 @@ void Bullet::VerifyCollision()
 
 void Bullet::DestroyEnemy(Body * body, int index)
 {
-	delete body;
-	//EnemyBlock::Bodies.erase(1, 1);
-	
+	body->isEnabled = false;
+	delete this;
 }

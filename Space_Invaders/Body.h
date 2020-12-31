@@ -20,6 +20,7 @@ public:
 	int bodyD[2][196];
 	int getSize() { return pixelSize; }
 	int getRows() { return rows; }
+	bool isEnabled;
 protected:
 	float positionX;
 	float positionY;	

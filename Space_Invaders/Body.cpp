@@ -46,15 +46,18 @@ Body::Body(BodyType _bodyType, sf::Vector2f windowSize)
 	currentFrame = 0;
 	animationFrames = 2;
 	bounds = new Bounds(this->positionX, this->positionY, this->rows * this->pixelSize, this->rows * this->pixelSize);
+	isEnabled = true;
 }
 
 void Body::Draw(sf::RenderWindow* window)
 {
+	if (!isEnabled)
+		return;
 	int count = rows;
 	int x = 0;
 	int y = 0;
 
-	/*sf::RectangleShape shape1(sf::Vector2f(pixelSize, pixelSize));
+	sf::RectangleShape shape1(sf::Vector2f(pixelSize, pixelSize));
 	shape1.setPosition(sf::Vector2f(bounds->Left, bounds->Top));
 	shape1.setFillColor(sf::Color::Red);
 	window->draw(shape1);
@@ -73,8 +76,8 @@ void Body::Draw(sf::RenderWindow* window)
 	sf::RectangleShape shape4(sf::Vector2f(pixelSize, pixelSize));
 	shape4.setPosition(sf::Vector2f(bounds->Right, bounds->Botton));
 	shape4.setFillColor(sf::Color::Magenta);
-	window->draw(shape4);*/
-	
+	window->draw(shape4);
+
 	for (int i = 0; i < 196; i++)
 	{
 		if (bodyD[currentFrame][i])
@@ -97,6 +100,9 @@ void Body::Draw(sf::RenderWindow* window)
 
 void Body::Move(sf::Vector2f direction)
 {
+	if (!isEnabled)
+		return;
+
 	this->positionX += (direction.x);
 	this->positionY += (direction.y);
 	bounds->CalculateBounds(this->positionX, this->positionY, this->rows * this->pixelSize, this->rows * this->pixelSize);
@@ -104,8 +110,8 @@ void Body::Move(sf::Vector2f direction)
 
 void Body::Update(float time)
 {
-	if (bodyType != BodyType::PLAYER)
-		cout << to_string(positionX);
+	if (!isEnabled)
+		return;
 
 	ClampPosition();
 }

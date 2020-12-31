@@ -8,9 +8,11 @@
 #include <vector>
 
 const sf::Vector2f windowSize(1000, 800);
-std::vector<Bullet*> Bullet::bulletList;
+std::map<int, Bullet*> Bullet::bulletList;
+int Bullet::currentId;
 std::vector<Body*> EnemyBlock::Bodies;
 Player* Player::player;
+
 
 int main()
 {
@@ -33,12 +35,11 @@ int main()
 		enemies->Update(elapsed.count());
 		window.clear();
 
-		if (!Bullet::GetAllBullets().empty())
-			for (int i = 0; i < Bullet::GetAllBullets().size(); i++)
-			{
-				Bullet::GetAllBullets()[i]->Update(elapsed.count());
-				Bullet::GetAllBullets()[i]->Draw(&window);
-			}
+		for (int i = 0; i < Bullet::GetAllBullets().size(); i++)
+		{
+			Bullet::GetAllBullets()[i]->Update(elapsed.count());
+			Bullet::GetAllBullets()[i]->Draw(&window);
+		}
 
 		enemies->Draw(&window);
 		player->Draw(&window);

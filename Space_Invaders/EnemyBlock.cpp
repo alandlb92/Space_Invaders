@@ -35,9 +35,8 @@ void EnemyBlock::Update(float time)
 
 void EnemyBlock::Draw(sf::RenderWindow * window)
 {
-	/*float pixelSize = 5;
+	float pixelSize = 5;
 	Bounds bounds = GetBounds();
-	std::cout << bounds.Right << "Left" << bounds.Left;
 
 	sf::RectangleShape shape1(sf::Vector2f(pixelSize, pixelSize));
 	shape1.setPosition(sf::Vector2f(bounds.Left, bounds.Top));
@@ -58,7 +57,7 @@ void EnemyBlock::Draw(sf::RenderWindow * window)
 	sf::RectangleShape shape4(sf::Vector2f(pixelSize, pixelSize));
 	shape4.setPosition(sf::Vector2f(bounds.Right, bounds.Botton));
 	shape4.setFillColor(sf::Color::Magenta);
-	window->draw(shape4);*/
+	window->draw(shape4);
 
 	for (int i = 0; i < Bodies.size(); i++)
 	{
@@ -76,6 +75,9 @@ Bounds EnemyBlock::GetBounds()
 	float Botton = -10000;
 	for (int i = 0; i < Bodies.size(); i++)
 	{
+		if (!Bodies[i]->isEnabled)
+			continue;
+
 		if (Bodies[i]->bounds->Left < Left)
 			Left = Bodies[i]->bounds->Left;
 		if (Bodies[i]->bounds->Right > Right)
