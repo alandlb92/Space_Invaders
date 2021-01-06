@@ -4,6 +4,7 @@
 Player::Player(BodyType bodyType, sf::Vector2f windowSize) :Body(bodyType, windowSize)
 {
 	player = this;
+	spaceReleased = true;
 	_windowSize = windowSize;
 }
 
@@ -18,11 +19,12 @@ void Player::Update(float time, sf::Event* event)
 	{
 		Move(sf::Vector2f(VELOCITY * time, 0));
 	}
-	if (event->type == sf::Event::KeyPressed)
-		canShoot = true;
-	if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space && canShoot)
+
+	if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space)
+		spaceReleased = true;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && spaceReleased && CanShoot())
 	{
-		canShoot = false;
+		spaceReleased = false;
 		new Bullet(GetBulletStart(), false, _windowSize);
 	}
 	Body::Update(time);
@@ -33,4 +35,15 @@ sf::Vector2f Player::GetBulletStart()
 	float centerX = positionX + GetBodySize().x / 2;
 	float centerY = positionY;
 	return sf::Vector2f(centerX, centerY);
+}
+
+bool Player::CanShoot()
+{
+	for (const auto& it : Bullet::GetAllBullets())
+	{
+		if (!it.second->enemy)
+			return false;
+	}
+
+	return true;
 }

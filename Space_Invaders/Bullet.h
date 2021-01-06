@@ -12,6 +12,7 @@ public:
 	static std::map<int, Bullet*> GetAllBullets();
 	int id;
 	Bounds* bounds;
+	bool enemy;
 private:
 	static int currentId;
 	static void DeleteBullet(int id);
@@ -24,7 +25,6 @@ private:
 
 	float positionX;
 	float positionY;
-	bool enemy;
 	const float bulletSizeX = 4;
 	const float bulletSizeY = 12;
 	const float velocity = 600;
