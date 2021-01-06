@@ -3,12 +3,13 @@
 #include <iostream>
 #include <map>
 
-Bullet::Bullet(sf::Vector2f startPosition, bool isEnemy)
+Bullet::Bullet(sf::Vector2f startPosition, bool isEnemy, sf::Vector2f windowSize)
 {
 	id = currentId++;
 	enemy = isEnemy;
 	positionX = startPosition.x;
 	positionY = startPosition.y;
+	_windowSize = windowSize;
 	bounds = new Bounds(positionX, positionY, bulletSizeX, bulletSizeY);
 	bulletList.insert(std::pair<int, Bullet*>(id, this));
 }
@@ -20,7 +21,10 @@ void Bullet::Update(float time)
 	else
 		positionY -= (time * velocity);
 	bounds->CalculateBounds(positionX, positionY, bulletSizeX, bulletSizeY);
-	VerifyCollision();
+	if (VerifyCollision())
+		return;
+	if (VerifyOutOffScreen())
+		return;
 }
 
 
@@ -44,7 +48,7 @@ void Bullet::DeleteBullet(int id)
 	Bullet::bulletList.erase(id);
 }
 
-void Bullet::VerifyCollision()
+bool Bullet::VerifyCollision()
 {
 	if (!enemy)
 	{
@@ -54,7 +58,7 @@ void Bullet::VerifyCollision()
 			if (bounds->VerifyCollision(enemy->bounds) && enemy->isEnabled)
 			{
 				DestroyEnemy(enemy, i);
-				break;
+				return true;
 			}
 		}
 	}
@@ -62,10 +66,23 @@ void Bullet::VerifyCollision()
 	{
 
 	}
+	return false;
+}
+
+bool Bullet::VerifyOutOffScreen()
+{
+	if (positionY > _windowSize.y + bulletSizeY || positionY < 0 - bulletSizeY)
+	{
+		cout << "Deleted out of screen";
+		DeleteBullet(this->id);
+		return true;
+	}
+	return false;
 }
 
 void Bullet::DestroyEnemy(Body * body, int index)
 {
 	body->isEnabled = false;
 	DeleteBullet(this->id);
+	cout << "Deleted Collision";
 }

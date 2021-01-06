@@ -9,5 +9,6 @@ public:
 private:
 	bool canShoot;
 	const float VELOCITY = 200;
+	sf::Vector2f _windowSize;
 };
 

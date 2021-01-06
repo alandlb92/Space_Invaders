@@ -4,6 +4,7 @@
 Player::Player(BodyType bodyType, sf::Vector2f windowSize) :Body(bodyType, windowSize)
 {
 	player = this;
+	_windowSize = windowSize;
 }
 
 void Player::Update(float time, sf::Event* event)
@@ -22,7 +23,7 @@ void Player::Update(float time, sf::Event* event)
 	if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space && canShoot)
 	{
 		canShoot = false;
-		new Bullet(sf::Vector2f(positionX, positionY), false);
+		new Bullet(sf::Vector2f(positionX, positionY), false, _windowSize);
 	}
 
 

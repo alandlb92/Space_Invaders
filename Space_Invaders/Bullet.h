@@ -6,7 +6,7 @@
 class Bullet
 {
 public:
-	Bullet(sf::Vector2f startPosition, bool isEnemy);
+	Bullet(sf::Vector2f startPosition, bool isEnemy, sf::Vector2f windowSize);
 	void Update(float time);
 	void Draw(sf::RenderWindow* window);
 	static std::map<int, Bullet*> GetAllBullets();
@@ -17,7 +17,9 @@ private:
 	static void DeleteBullet(int id);
 	static std::map<int, Bullet*> bulletList;
 
-	void VerifyCollision();
+	sf::Vector2f _windowSize;
+	bool VerifyCollision();
+	bool VerifyOutOffScreen();
 	void DestroyEnemy(Body* body, int index);
 
 	float positionX;
