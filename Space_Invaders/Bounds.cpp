@@ -23,5 +23,5 @@ void Bounds::CalculateBounds(float positionX, float positionY, float sizeX, floa
 
 bool Bounds::VerifyCollision(Bounds * bounds)
 {
-	return bounds->Left < Left && bounds->Right > Right && bounds->Top < Top && bounds->Botton > Botton;
+		return bounds->Left < Left && bounds->Right > Right && bounds->Top < Top && bounds->Botton > Botton;
 }

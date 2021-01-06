@@ -35,10 +35,10 @@ int main()
 		enemies->Update(elapsed.count());
 		window.clear();
 
-		for (int i = 0; i < Bullet::GetAllBullets().size(); i++)
+		for (const auto& it : Bullet::GetAllBullets())
 		{
-			Bullet::GetAllBullets()[i]->Update(elapsed.count());
-			Bullet::GetAllBullets()[i]->Draw(&window);
+			it.second->Update(elapsed.count());
+			it.second->Draw(&window);
 		}
 
 		enemies->Draw(&window);

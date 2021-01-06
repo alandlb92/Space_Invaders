@@ -9,7 +9,6 @@ Bullet::Bullet(sf::Vector2f startPosition, bool isEnemy)
 	enemy = isEnemy;
 	positionX = startPosition.x;
 	positionY = startPosition.y;
-	verifyCollision = true;
 	bounds = new Bounds(positionX, positionY, bulletSizeX, bulletSizeY);
 	bulletList.insert(std::pair<int, Bullet*>(id, this));
 }
@@ -38,18 +37,24 @@ std::map<int, Bullet*> Bullet::GetAllBullets()
 	return bulletList;
 }
 
+void Bullet::DeleteBullet(int id)
+{
+	delete Bullet::bulletList[id]->bounds;
+	delete Bullet::bulletList[id];
+	Bullet::bulletList.erase(id);
+}
+
 void Bullet::VerifyCollision()
 {
-	if (!verifyCollision)
-		return;
 	if (!enemy)
 	{
 		for (int i = 0; i < EnemyBlock::Bodies.size(); i++)
 		{
 			Body* enemy = EnemyBlock::Bodies[i];
-			if (bounds->VerifyCollision(enemy->bounds))
+			if (bounds->VerifyCollision(enemy->bounds) && enemy->isEnabled)
 			{
 				DestroyEnemy(enemy, i);
+				break;
 			}
 		}
 	}
@@ -62,5 +67,5 @@ void Bullet::VerifyCollision()
 void Bullet::DestroyEnemy(Body * body, int index)
 {
 	body->isEnabled = false;
-	delete this;
+	DeleteBullet(this->id);
 }

@@ -14,11 +14,12 @@ public:
 	Bounds* bounds;
 private:
 	static int currentId;
+	static void DeleteBullet(int id);
 	static std::map<int, Bullet*> bulletList;
+
 	void VerifyCollision();
 	void DestroyEnemy(Body* body, int index);
 
-	bool verifyCollision;
 	float positionX;
 	float positionY;
 	bool enemy;
