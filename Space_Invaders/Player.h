@@ -10,5 +10,7 @@ private:
 	bool canShoot;
 	const float VELOCITY = 200;
 	sf::Vector2f _windowSize;
+
+	sf::Vector2f GetBulletStart();
 };
 

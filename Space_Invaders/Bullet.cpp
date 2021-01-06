@@ -7,7 +7,7 @@ Bullet::Bullet(sf::Vector2f startPosition, bool isEnemy, sf::Vector2f windowSize
 {
 	id = currentId++;
 	enemy = isEnemy;
-	positionX = startPosition.x;
+	positionX = startPosition.x - bulletSizeX;
 	positionY = startPosition.y;
 	_windowSize = windowSize;
 	bounds = new Bounds(positionX, positionY, bulletSizeX, bulletSizeY);

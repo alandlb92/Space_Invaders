@@ -23,9 +23,14 @@ void Player::Update(float time, sf::Event* event)
 	if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space && canShoot)
 	{
 		canShoot = false;
-		new Bullet(sf::Vector2f(positionX, positionY), false, _windowSize);
+		new Bullet(GetBulletStart(), false, _windowSize);
 	}
-
-
 	Body::Update(time);
+}
+
+sf::Vector2f Player::GetBulletStart()
+{
+	float centerX = positionX + GetBodySize().x / 2;
+	float centerY = positionY;
+	return sf::Vector2f(centerX, centerY);
 }

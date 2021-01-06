@@ -27,6 +27,6 @@ private:
 	bool enemy;
 	const float bulletSizeX = 4;
 	const float bulletSizeY = 12;
-	const float velocity = 300;
+	const float velocity = 600;
 };
 

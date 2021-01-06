@@ -17,6 +17,7 @@ public:
 	sf::Vector2f GetPosition();
 
 	Bounds* bounds;
+	sf::Vector2f GetBodySize();
 	int bodyD[2][196];
 	int getSize() { return pixelSize; }
 	int getRows() { return rows; }

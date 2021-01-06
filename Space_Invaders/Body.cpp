@@ -57,7 +57,7 @@ void Body::Draw(sf::RenderWindow* window)
 	int x = 0;
 	int y = 0;
 
-	sf::RectangleShape shape1(sf::Vector2f(pixelSize, pixelSize));
+	/*sf::RectangleShape shape1(sf::Vector2f(pixelSize, pixelSize));
 	shape1.setPosition(sf::Vector2f(bounds->Left, bounds->Top));
 	shape1.setFillColor(sf::Color::Red);
 	window->draw(shape1);
@@ -77,7 +77,7 @@ void Body::Draw(sf::RenderWindow* window)
 	shape4.setPosition(sf::Vector2f(bounds->Right, bounds->Botton));
 	shape4.setFillColor(sf::Color::Magenta);
 	window->draw(shape4);
-
+*/
 	for (int i = 0; i < 196; i++)
 	{
 		if (bodyD[currentFrame][i])
@@ -133,6 +133,13 @@ void Body::SetPosition(sf::Vector2f position)
 sf::Vector2f Body::GetPosition()
 {
 	return sf::Vector2f(this->positionX, this->positionY);
+}
+
+sf::Vector2f Body::GetBodySize()
+{
+	float sizeX = rows * pixelSize;
+	float sizeY = rows * pixelSize;
+	return sf::Vector2f(sizeX, sizeY);
 }
 
 
