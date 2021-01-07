@@ -21,7 +21,7 @@ private:
 	sf::Vector2f _windowSize;
 	bool VerifyCollision();
 	bool VerifyOutOffScreen();
-	void DestroyEnemy(Body* body, int index);
+	void DestroyEnemyAndBullet(Body* body, int index);
 
 	float positionX;
 	float positionY;

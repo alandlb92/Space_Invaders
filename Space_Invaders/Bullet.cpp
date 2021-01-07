@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "EnemyBlock.h"
+#include "BarrierPiece.h"
 #include <iostream>
 #include <map>
 
@@ -55,9 +56,9 @@ bool Bullet::VerifyCollision()
 		for (int i = 0; i < EnemyBlock::Bodies.size(); i++)
 		{
 			Body* enemy = EnemyBlock::Bodies[i];
-			if (bounds->VerifyCollision(enemy->bounds) && enemy->isEnabled)
+			if (enemy->isEnabled && bounds->VerifyCollision(enemy->bounds))
 			{
-				DestroyEnemy(enemy, i);
+				DestroyEnemyAndBullet(enemy, i);
 				return true;
 			}
 		}
@@ -66,6 +67,17 @@ bool Bullet::VerifyCollision()
 	{
 
 	}
+
+	for (const auto& it : BarrierPiece::GetBarriers())
+	{
+		if (it.second->enable && bounds->VerifyCollision(it.second->bounds))
+		{
+			it.second->enable = false;
+			DeleteBullet(this->id);
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -73,16 +85,14 @@ bool Bullet::VerifyOutOffScreen()
 {
 	if (positionY > _windowSize.y + bulletSizeY || positionY < 0 - bulletSizeY)
 	{
-		cout << "Deleted out of screen";
 		DeleteBullet(this->id);
 		return true;
 	}
 	return false;
 }
 
-void Bullet::DestroyEnemy(Body * body, int index)
+void Bullet::DestroyEnemyAndBullet(Body * body, int index)
 {
 	body->isEnabled = false;
 	DeleteBullet(this->id);
-	cout << "Deleted Collision";
 }

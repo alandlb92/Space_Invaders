@@ -14,17 +14,19 @@ public:
 	
 
 private:
-	sf::Vector2f windowSize;
-	float StepTime();
-	float timeCount;
-	bool Right;
-
-	void nextStep();
-
 	const int StepDistance = 30;
 	const int spaceHorizontal = 50;
 	const int spaceVertical = 10;
 	const int EnemyRows = 6;
 	const int EnemyColunms = 6;
+	
+	float timeCount;
+	bool Right;
+
+	sf::Vector2f windowSize;
+
+	float StepTime();
+	int CountActivesBodies();
+	void nextStep();
 };
 

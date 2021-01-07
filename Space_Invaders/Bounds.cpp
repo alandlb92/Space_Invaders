@@ -3,6 +3,10 @@
 Bounds::Bounds(float positionX, float positionY, float sizeX, float sizeY)
 {
 	CalculateBounds(positionX, positionY, sizeX, sizeY);
+	x = positionX;
+	y = positionY;
+	width = sizeX;
+	height = sizeY;
 }
 
 Bounds::Bounds(bool create, float _right, float _left, float _top, float _botton)
@@ -19,9 +23,18 @@ void Bounds::CalculateBounds(float positionX, float positionY, float sizeX, floa
 	Left = positionX;
 	Top = positionY;
 	Botton = positionY + sizeY;
+	x = positionX;
+	y = positionY;
+	width = sizeX;
+	height = sizeY;
 }
 
 bool Bounds::VerifyCollision(Bounds * bounds)
 {
-		return bounds->Left < Left && bounds->Right > Right && bounds->Top < Top && bounds->Botton > Botton;
+	Bounds* rect1 = bounds;
+	Bounds* rect2 = this;
+	return (rect1->x < rect2->x + rect2->width &&
+		rect1->x + rect1->width > rect2->x &&
+		rect1->y < rect2->y + rect2->height &&
+		rect1->y + rect1->height > rect2->y);
 }

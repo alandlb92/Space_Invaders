@@ -11,4 +11,9 @@ public:
 	float Left;
 	float Top;
 	float Botton;
+
+	float x;
+	float y;
+	float width;
+	float height;
 };

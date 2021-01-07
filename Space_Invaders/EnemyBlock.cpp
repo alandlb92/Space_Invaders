@@ -38,27 +38,6 @@ void EnemyBlock::Draw(sf::RenderWindow * window)
 	float pixelSize = 5;
 	Bounds bounds = GetBounds();
 
-	//sf::RectangleShape shape1(sf::Vector2f(pixelSize, pixelSize));
-	//shape1.setPosition(sf::Vector2f(bounds.Left, bounds.Top));
-	//shape1.setFillColor(sf::Color::Red);
-	//window->draw(shape1);
-
-	//sf::RectangleShape shape2(sf::Vector2f(pixelSize, pixelSize));
-	//shape2.setPosition(sf::Vector2f(bounds.Left, bounds.Botton));
-	//shape2.setFillColor(sf::Color::Yellow);
-	//window->draw(shape2);
-
-	//sf::RectangleShape shape3(sf::Vector2f(pixelSize, pixelSize));
-	//shape3.setPosition(sf::Vector2f(bounds.Right, bounds.Top));
-	//shape3.setFillColor(sf::Color::Blue);
-	//window->draw(shape3);
-
-
-	//sf::RectangleShape shape4(sf::Vector2f(pixelSize, pixelSize));
-	//shape4.setPosition(sf::Vector2f(bounds.Right, bounds.Botton));
-	//shape4.setFillColor(sf::Color::Magenta);
-	//window->draw(shape4);
-
 	for (int i = 0; i < Bodies.size(); i++)
 	{
 		Bodies[i]->Draw(window);
@@ -94,11 +73,23 @@ Bounds EnemyBlock::GetBounds()
 
 float EnemyBlock::StepTime()
 {
-	return (Bodies.size()/(EnemyRows * EnemyColunms)) * (2) ;
+	return ((float)CountActivesBodies() /((float)EnemyRows * (float)EnemyColunms));
+}
+
+int EnemyBlock::CountActivesBodies()
+{
+	int count = 0;
+	for (int i = 0; i < Bodies.size(); i++)
+	{
+		if (Bodies[i]->isEnabled)
+			count++;
+	}
+
+	return count;
 }
 
 void EnemyBlock::nextStep()
-{
+{	
 	sf::Vector2f movementDirection = sf::Vector2f(0, 0);
 	if (Right)
 		movementDirection = sf::Vector2f(StepDistance, 0);
